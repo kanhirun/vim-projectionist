@@ -99,6 +99,7 @@ function! s:Detect(...) abort
     if s:nscall(ns, 'filereadable', root . '/.projections.json')
       try
         let value = projectionist#json_parse(projectionist#readfile(root . '/.projections.json'))
+        echo "projectionist#append(" . root . ", ", value)
         call projectionist#append(root, value)
       catch /^invalid JSON:/
       endtry
@@ -106,7 +107,7 @@ function! s:Detect(...) abort
     for [key, value] in items(g:projectionist_heuristics)
       for test in split(key, '|')
         if s:has(ns, root, test)
-          call projectionist#append(root, value)
+          echo "projectionist#append(" . root . ", ", value)
           break
         endif
       endfor
