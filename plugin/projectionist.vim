@@ -126,6 +126,7 @@ function! s:Detect(...) abort
 
   if !empty(b:projectionist)
     let b:projectionist_file = file
+    echo "projectionist#activate()"
     call projectionist#activate()
   endif
 endfunction
